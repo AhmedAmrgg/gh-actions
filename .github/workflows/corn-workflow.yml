@@ -1,0 +1,11 @@
+name: corn workflow 
+
+on: 
+  schedule:
+    - cron: "0/5 * * * *"
+    - cron: "0/20 1 * * *"
+jobs: 
+ cron-workflow: 
+   runs-on: ubunntu-latest
+   steps: 
+     - run echo "cron work flow"

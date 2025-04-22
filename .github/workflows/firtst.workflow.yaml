@@ -3,11 +3,22 @@ on:
    push: 
       branches: 
         -"main"
+  pull_request:
+   branches:
+     - "feature"
+   types: [opened, closed]
 jobs:
   first-workflow-job: 
     name: first job
     runs-on: ubuntu-latest
     steps: 
-      - name: run bash command 
-        run: echo "first work"
+      - name: before checkout action  
+        run: run
+        shell: bash
+
+      - name: checkout steps 
+        uses: action/checkout@v3
+      
+      - name: after checkout action
+        run: ls 
         shell: bash
