@@ -65,7 +65,10 @@ jobs:
           --image-id imageTag=latest
 
     - name: Scan with Trivy
-      run: trivy image your-image-name --exit-code 1
+      run: trivy image my-app --exit-code 1
       continue-on-error: true
+
+    - name: Clean up temp file
+      run: rm -f trivy_envs.txt
 
    
