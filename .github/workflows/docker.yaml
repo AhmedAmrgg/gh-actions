@@ -71,8 +71,20 @@ jobs:
           --image-id imageTag=latest
 
     - name: Upload Vulnerability Scan Results
-      uses: actions/upload-artifact@v4
-      with:
+    uses: actions/upload-artifact@v4
+    with:
           name: trivy-report
           path: trivy-report.json
           retention-days: 1
+
+    -name: Fail build on High/Criticial Vulnerabilities
+    uses: aquasecurity/trivy-action@master
+    with:
+          scan-type: "fs"
+          format: table
+          scan-ref: .
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: 1
+          # On a subsequent call to the action we know trivy is already installed so can skip this
+          skip-setup-trivy: true
