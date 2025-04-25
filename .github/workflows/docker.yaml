@@ -44,6 +44,7 @@ jobs:
       continue-on-error: true
       with:
           image-ref: my-app:latest
+          output: trivy-report.json
           format: table
           exit-code: 1
           severity: CRITICAL,HIGH
