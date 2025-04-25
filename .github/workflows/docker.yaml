@@ -64,4 +64,9 @@ jobs:
           --repository-name my-app \
           --image-id imageTag=latest
 
-   
+    - name: Upload Vulnerability Scan Results
+      uses: actions/upload-artifact@v4
+      with:
+          name: trivy-report
+          path: trivy-report.json
+          retention-days: 1
