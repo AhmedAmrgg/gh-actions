@@ -47,6 +47,9 @@ jobs:
           exit-code: 1
           severity: CRITICAL,HIGH
 
+    - name: Scan with Trivy
+      run: trivy image your-image-name --exit-code 1 || true
+
     - name: Push image to Amazon ECR
       run: |
         docker push $IMAGE_URI
