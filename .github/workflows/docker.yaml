@@ -39,6 +39,14 @@ jobs:
         docker tag my-app:latest $IMAGE_URI
         echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
 
+    - name: Scan image with Trivy
+      uses: aquasecurity/trivy-action@master
+      with:
+          image-ref: my-app:latest
+          format: table
+          exit-code: 1
+          severity: CRITICAL,HIGH
+
     - name: Push image to Amazon ECR
       run: |
         docker push $IMAGE_URI
@@ -56,10 +64,4 @@ jobs:
           --repository-name my-app \
           --image-id imageTag=latest
 
-    - name: Scan image with Trivy
-      uses: aquasecurity/trivy-action@master
-      with:
-          image-ref: my-app:latest
-          format: table
-          exit-code: 1
-          severity: CRITICAL,HIGH
+   
