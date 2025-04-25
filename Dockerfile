@@ -9,6 +9,8 @@ COPY package*.json ./
 
 # Copy app files
 COPY . .
+RUN ls
+RUN pwd
 
 # Install dependencies (none for this example, but needed for npm start)
 RUN npm install
