@@ -4,13 +4,16 @@ FROM node:18
 # Set working directory
 WORKDIR /app
 
-# Copy app files
-COPY . .
+# Copy package.json first
+COPY package.json ./
 
-# Install dependencies (none for this example, but needed for npm start)
+# Install dependencies
 RUN npm install
 
-# Expose the port
+# Copy the rest of the app files
+COPY . .
+
+# Expose the app port
 EXPOSE 3000
 
 # Start the app
