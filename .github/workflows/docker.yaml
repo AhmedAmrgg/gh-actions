@@ -64,4 +64,8 @@ jobs:
           --repository-name my-app \
           --image-id imageTag=latest
 
+    - name: Scan with Trivy
+      run: trivy image your-image-name --exit-code 1
+        continue-on-error: true
+
    
