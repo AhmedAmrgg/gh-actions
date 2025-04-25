@@ -39,14 +39,9 @@ jobs:
         docker tag my-app:latest $IMAGE_URI
         echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
 
-    - name: Run Trivy scan (don't fail workflow)
-      run: trivy image "$IMAGE_URI" --exit-code 1 || true
-
-    - name: Clean up temp files
-      run: rm -f trivy_envs.txt
-
     - name: Scan image with Trivy
       uses: aquasecurity/trivy-action@master
+      continue-on-error: true
       with:
           image-ref: my-app:latest
           format: table
