@@ -55,3 +55,11 @@ jobs:
         aws ecr describe-image-scan-findings \
           --repository-name my-app \
           --image-id imageTag=latest
+
+    - name: Scan image with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: my-app:latest
+          format: table
+          exit-code: 1
+          severity: CRITICAL,HIGH
