@@ -4,6 +4,9 @@ FROM node:18
 # Set working directory
 WORKDIR /app
 
+# Copy package files
+COPY package*.json ./
+
 # Copy app files
 COPY . .
 
