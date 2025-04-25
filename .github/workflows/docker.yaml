@@ -13,6 +13,7 @@ jobs:
       AWS_REGION: ${{secrets.AWS_REGION}} 
       ECR_REPOSITORY: my-app
       IMAGE_TAG: latest
+      IMAGE_URI: 313616258649.dkr.ecr.us-east-1.amazonaws.com/my-app:latest
 
     steps:
     - name: Checkout source
@@ -35,7 +36,6 @@ jobs:
 
     - name: Tag Docker image
       run: |
-        IMAGE_URI= 313616258649.dkr.ecr.us-east-1.amazonaws.com/my-app:latest
         docker tag my-app:latest $IMAGE_URI
         echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
 
