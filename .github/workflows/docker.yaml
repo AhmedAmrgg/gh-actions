@@ -64,11 +64,10 @@ jobs:
           --repository-name my-app \
           --image-id imageTag=latest
 
-    - name: Scan with Trivy
-      run: trivy image my-app --exit-code 1
-      continue-on-error: true
+    - name: Run Trivy scan (don't fail workflow)
+      run: trivy image "$IMAGE_URI" --exit-code 1 || true
 
-    - name: Clean up temp file
+    - name: Clean up temp files
       run: rm -f trivy_envs.txt
 
    
