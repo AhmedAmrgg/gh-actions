@@ -80,4 +80,8 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         SONAR_HOST_URL: https://sonarcloud.io/
-   
+      with:
+        args: >
+          -Dsonar.organization=AhmedAmrgg
+          -Dsonar.projectKey=AhmedAmrgg_gh-actions
+      
