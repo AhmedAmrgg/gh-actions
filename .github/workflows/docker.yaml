@@ -82,6 +82,6 @@ jobs:
         SONAR_HOST_URL: https://sonarcloud.io/
       with:
         args: >
-          -Dsonar.organization=AhmedAmrgg
+          -Dsonar.organization=ahmedamrgg
           -Dsonar.projectKey=AhmedAmrgg_gh-actions
       
