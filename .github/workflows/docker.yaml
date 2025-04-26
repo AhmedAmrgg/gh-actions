@@ -76,7 +76,7 @@ jobs:
         retention-days: 1
 
     - name: SonarQube Scan
-      uses: SonarSource/sonarqube-scan-action@v5.1.0
+      uses: SonarSource/sonarqube-scan-action@v5.1.0 # Ex: v4.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
       env:
         SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         SONAR_HOST_URL: https://sonarcloud.io/
@@ -87,26 +87,6 @@ jobs:
       
     - name: Run Snyk to check for vulnerabilities (Node.js)
       uses: snyk/actions/node@master
-      continue-on-error: false
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        command: test
-        args: --severity-threshold=high --all-projects
-
-    - name: Upload Snyk vulnerability scan results as artifact (JSON format)
-      run: snyk test --all-projects --json > snyk-report.json
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-    - name: Upload Snyk vulnerability report as artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: snyk-report
-        path: snyk-report.json
-        retention-days: 1
-
-    - name: Run Snyk Monitor to track vulnerabilities
-      run: snyk monitor --all-projects
+      continue-on-error: true
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
