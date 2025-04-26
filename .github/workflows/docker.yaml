@@ -87,6 +87,5 @@ jobs:
       
     - name: Run Snyk to check for vulnerabilities (Node.js)
       uses: snyk/actions/node@master
-      continue-on-error: true
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
