@@ -14,6 +14,8 @@ jobs:
       ECR_REPOSITORY: my-app
       IMAGE_TAG: latest
       IMAGE_URI: 313616258649.dkr.ecr.us-east-1.amazonaws.com/my-app:latest
+      GIT_HUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
+      SONARCLOUD_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
 
     steps:
     - name: Checkout source
@@ -72,6 +74,17 @@ jobs:
         name: trivy-report
         path: trivy-report.json
         retention-days: 1
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build with Maven cloud
+      run:  mvn -B verify sonar:sonar -Dsonar.projectKey=javareachabilityy -Dsonar.organization=javareachabilityy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONARCLOUD_TOKEN
+
 
 
    
