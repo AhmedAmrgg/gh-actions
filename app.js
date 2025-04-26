@@ -1,35 +1,30 @@
-const express = require('express');
-const app = express();
+const http = require('http');
 
-const unusedVar = "I am not used anywhere"; // ❌ متغير مش مستخدم
+const hardcodedPassword = "admin123"; // ❌ Hardcoded credentials
 
-function veryBigFunction() { // ❌ دالة طويلة جدا
-  console.log("Start function...");
-  for (let i = 0; i < 50; i++) {
-    console.log("Processing item " + i);
+let unusedVariable = 42; // ❌ Unused variable
+
+function bigFunction() { // ❌ Long function
+  console.log("Start");
+  for (let i = 0; i < 100; i++) {
+    console.log("Processing " + i);
   }
-  console.log("End function...");
+  console.log("End");
 }
 
-function duplicatedCode() {
-  console.log("Duplicated message");
+function duplicatedCodeExample() {
+  console.log("This is duplicated code");
 }
 
-function anotherDuplicatedCode() {
-  console.log("Duplicated message"); // ❌ كود مكرر
+function anotherDuplicatedCodeExample() {
+  console.log("This is duplicated code"); // ❌ Duplicate code
 }
 
-function riskyFunction(input) {
-  return input.length; // ❌ احتمال input يكون undefined أو null
-}
-
-app.get('/', (req, res) => {
-  riskyFunction(); // ❌ مش مرسل input أصلا
-  res.send('Hello World!');
+const server = http.createServer((req, res) => {
+  let input = null;
+  res.end(input.length); // ❌ Risk of TypeError: Cannot read property 'length' of null
 });
 
-const hardcodedPassword = "123456"; // ❌ Password ثابت في الكود
-
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+server.listen(3000, () => {
+  console.log('Server running on port 3000');
 });
