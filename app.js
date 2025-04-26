@@ -1,28 +1,41 @@
 const http = require('http');
 
-const hardcodedPassword = "admin123"; // ❌ Hardcoded credentials
+// ❌ Hardcoded credentials with clearer name
+const dbPassword = "admin123";
 
-let unusedVariable = 42; // ❌ Unused variable
+// ❌ Unused variable
+let unusedValue = 42;
 
-function bigFunction() { // ❌ Long function
-  console.log("Start");
+// ❌ Long function with bad code smell
+function veryBigFunction() {
+  console.log("Starting...");
   for (let i = 0; i < 100; i++) {
-    console.log("Processing " + i);
+    console.log("Processing item " + i);
+    if (i % 10 === 0) {
+      console.log("Checkpoint");
+    } else if (i % 3 === 0) {
+      console.log("Another checkpoint");
+    } else {
+      console.log("Still going...");
+    }
   }
-  console.log("End");
+  console.log("Ending...");
 }
 
-function duplicatedCodeExample() {
-  console.log("This is duplicated code");
+// ❌ Duplicated code
+function duplicatedLogger() {
+  console.log("This is a log that is exactly the same");
+  console.log("Another line that is the same");
 }
 
-function anotherDuplicatedCodeExample() {
-  console.log("This is duplicated code"); // ❌ Duplicate code
+function anotherDuplicatedLogger() {
+  console.log("This is a log that is exactly the same");
+  console.log("Another line that is the same");
 }
 
 const server = http.createServer((req, res) => {
   let input = null;
-  res.end(input.length); // ❌ Risk of TypeError: Cannot read property 'length' of null
+  res.end(input.length); // ❌ Risk of crash
 });
 
 server.listen(3000, () => {
