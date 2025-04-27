@@ -1,8 +1,16 @@
 {
-  "name": "simple-app",
+  "name": "super-vulnerable-app",
   "version": "1.0.0",
-  "main": "app.js",
+  "description": "An app full of vulnerabilities",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "4.16.0",
+    "lodash": "4.17.11",
+    "jquery": "3.4.0", 
+    "debug": "2.6.8",
+    "morgan": "1.9.0"
   }
 }
