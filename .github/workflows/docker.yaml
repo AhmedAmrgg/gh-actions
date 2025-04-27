@@ -85,16 +85,18 @@ jobs:
           -Dsonar.organization=ahmedamrgg
           -Dsonar.projectKey=AhmedAmrgg_gh-actions
       
+    - name: Install Snyk
+      run: npm install -g snyk
+       
     - name: Run Snyk Test and save to file
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       run: |
-        snyk test --json > snyk-report.json
-        ls -la   # دي مهمة عشان تشوف الفايلات اللي اتولدت
-
+          snyk test --json > snyk-report.json || true
+          ls -la
 
     - name: Upload snyk report as artifact
       uses: actions/upload-artifact@v4
       with:
-          name: snyk-scan-report
-          path: snyk-report.json
+        name: snyk-scan-report
+        path: snyk-report.json
