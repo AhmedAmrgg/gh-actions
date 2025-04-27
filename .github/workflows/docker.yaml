@@ -89,3 +89,9 @@ jobs:
       uses: snyk/actions/node@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+    - name: Upload snyk report as artifact
+      uses: actions/upload-artifact@v4
+      with:
+          name: snyk-scan-report
+          path: snyk-report.json
