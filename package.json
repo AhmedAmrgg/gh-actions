@@ -1,9 +1,14 @@
 {
-    "name": "simple-app",
-    "version": "1.0.0",
-    "main": "app.js",
-    "scripts": {
-      "start": "node app.js"
-    }
+  "name": "vulnerable-app",
+  "version": "1.0.0",
+  "description": "A vulnerable Node.js app for testing Snyk",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "4.16.0",
+    "lodash": "4.17.11",
+    "debug": "2.6.8"
   }
-  
+}
