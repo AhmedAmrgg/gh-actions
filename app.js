@@ -1,9 +1,16 @@
-const htp = require('http'); // خطأ: كتبت http غلط
+const httpp = require('http'); // غلط ف كتابة http
 
-const server = htp.creatServer((req, res) => { // خطأ: creatServer مش createServer
-  res.end('Hello, Docker!)'; // خطأ: قوس الاقتباس مش مقفول صح
-});
+const fs = require('fs-extraa'); // غلط: موديول مش موجود اصلا
 
-server.listen(3000 () => { // خطأ: نسيت فاصلة قبل الكولباك
-  console.log('Server running on port 3000'); // دي السطر الوحيد الصح 😂
-};
+const server = httpp.createServr((req, res) => { // غلط: createServr مش createServer
+res.end("Hello World); // غلط: double quotes مفتوحة ومفيش قفل
+
+if(req.url = "/test") { // غلط: عامل = بدل ==
+ console.log('Test path'); 
+} else { 
+ console.log('Other path' 
+} // غلط: مفيش قوس قافل للـ console.log
+
+server.listen(3000 () => { // غلط: مفيش فاصلة بعد 3000
+ console.log("Server is running on port 3000")
+ // نسيت قوس النهاية
