@@ -85,10 +85,13 @@ jobs:
           -Dsonar.organization=ahmedamrgg
           -Dsonar.projectKey=AhmedAmrgg_gh-actions
       
-    - name: Run Snyk to check for vulnerabilities (Node.js)
-      uses: snyk/actions/node@master
+    - name: Run Snyk Test and save to file
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: |
+        snyk test --json > snyk-report.json
+        ls -la   # دي مهمة عشان تشوف الفايلات اللي اتولدت
+
 
     - name: Upload snyk report as artifact
       uses: actions/upload-artifact@v4
